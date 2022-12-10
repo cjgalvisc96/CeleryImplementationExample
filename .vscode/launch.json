@@ -2,71 +2,29 @@
     "version": "0.2.0",
     "configurations": [
         {
-            "name": "Python: API",
+            "name": "Python: Celery",
             "type": "python",
             "request": "launch",
-            "program": "${workspaceFolder}/src/apps/inventary/api/start.py",
+            "module": "celery",
+            "console": "integratedTerminal",
+            "envFile": "${workspaceFolder}/.env",
+            "args": [
+                "-A",
+                "src.celery_app",
+                "worker",
+                "-l",
+                "info"
+                // "debug"
+            ]
+        },
+        {
+            "name": "Python: APP",
+            "type": "python",
+            "request": "launch",
             "env": {
                 "PYTHONPATH": "${workspaceFolder}"
             },
+            "program": "${workspaceFolder}/src/app.py",
         },
-        {
-            "name": "Python: Pytest Feature",
-            "type": "python",
-            "request": "launch",
-            "module": "pytest",
-            "console": "integratedTerminal",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}",
-            },
-            // "envFile": "${workspaceFolder}/.env.test",
-            "args": [
-                "-v",
-                "-m",
-                "feature",
-                "--disable-warnings"
-            ]
-        },
-        {
-            "name": "Python: Pytest Unit",
-            "type": "python",
-            "request": "launch",
-            "module": "pytest",
-            "console": "integratedTerminal",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}",
-            },
-            // "envFile": "${workspaceFolder}/.env.test",
-            "args": [
-                "-v",
-                "-m",
-                "unit",
-                "--disable-warnings"
-            ]
-        },
-        {
-            "name": "Python: Pytest All",
-            "type": "python",
-            "request": "launch",
-            "module": "pytest",
-            "console": "integratedTerminal",
-            "env": {
-                "PYTHONPATH": "${workspaceFolder}",
-            },
-            // "envFile": "${workspaceFolder}/.env.test",
-            "args": [
-                "tests",
-                // "tests/contexts/inventary/products/infrastucture/persistence/test_mongo_products_repository.py",
-                "--disable-warnings"
-            ]
-        },
-        {
-            "name": "Python: Current File",
-            "type": "python",
-            "request": "launch",
-            "program": "${file}",
-            "console": "integratedTerminal",
-            "justMyCode": true
-        }
     ]
 }
