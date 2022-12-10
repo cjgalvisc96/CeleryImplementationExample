@@ -1,0 +1,51 @@
+repos:
+-   repo: local
+    hooks:
+    -   id: black-local
+        stages: [commit]  
+        types: [python]
+        name: black-local
+        entry: black . 
+        language: system
+        pass_filenames: false
+        always_run: true
+
+-   repo: local
+    hooks:
+    -   id: isort-local
+        stages: [commit]  
+        types: [python]
+        name: isort-local
+        entry: isort . 
+        language: system
+        pass_filenames: false
+        always_run: true
+
+-   repo: https://github.com/PyCQA/autoflake
+    rev: v1.7.7
+    hooks:
+    -   id: autoflake
+        name: autoflake-cloud
+        stages: [commit]
+        args: [
+            '--expand-star-imports',
+            '--ignore-init-module-imports',
+            '--in-place',
+            '--remove-all-unused-imports',
+            '--remove-duplicate-keys',
+            '--remove-unused-variable',
+            '--recursive',
+            '.'
+        ]
+        always_run: true
+
+# -   repo: local
+#     hooks:
+#     -   id: pytest-local
+#         stages: [commit]  
+#         types: [python]
+#         name: pytest-local
+#         entry: pytest tests --disable-warnings  
+#         language: system
+#         pass_filenames: false
+#         always_run: true
