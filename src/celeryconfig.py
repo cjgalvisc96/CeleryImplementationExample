@@ -1,6 +1,6 @@
 from src.config import app_settings
 
-# imports = ("tasks.simple_implementation_task",)
+imports = ("src.tasks.simple_task",)
 
 broker_url = app_settings.RABBITMQ_URI
 
